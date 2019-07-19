@@ -3,20 +3,24 @@ services:
   influxdb:
     container_name: influxdb
     image: influxdb:1.0.2
-    ports:
-      - "8083:8083"
-      - "8086:8086"
+    network_mode: "host"
+    #ports:
+    #  - "8083:8083"
+    #  - "8086:8086"
     volumes:
-      - $PWD/influxdb:/var/lib/influxdb
+      - $PWD/data/influxdb:/var/lib/influxdb
     restart: always
 
   grafana:
     container_name: grafana
     image: grafana/grafana:4.3.2
-    ports:
-      - "3000:3000"
-    links:
-      - influxdb
+    network_mode: "host"
+    #ports:
+    #  - "3000:3000"
+    #links:
+    #  - influxdb
+    volumes:
+      - $PWD/data/grafana:/var/lib/grafana
     restart: always
 
   telegraf:
