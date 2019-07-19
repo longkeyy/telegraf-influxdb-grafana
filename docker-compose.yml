@@ -7,7 +7,7 @@ services:
       - "8083:8083"
       - "8086:8086"
     volumes:
-      - /home/core/volumes/influxdb:/var/lib/influxdb
+      - $PWD/influxdb:/var/lib/influxdb
     restart: always
 
   grafana:
@@ -24,6 +24,6 @@ services:
     image: telegraf:1.3.3
     network_mode: "host"
     volumes:
-      - /home/core/conf/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+      - $PWD/conf/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
